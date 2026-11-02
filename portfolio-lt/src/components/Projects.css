@@ -94,7 +94,23 @@
 }
 
 @media (max-width: 56em) {
+    .projects {
+        padding-inline: var(--page-pad);
+    }
+
     .projects__list {
-        gap: var(--space-4);
+        display: grid;
+        grid-template-columns: minmax(0, 1fr);
+        gap: var(--space-8);
+        width: 100%;
+        max-width: 32rem;
+        margin-inline: auto;
+        padding: 0;
+        overflow: visible;
+        scroll-snap-type: none;
+    }
+
+    .project-card {
+        width: 100%;
     }
 }
