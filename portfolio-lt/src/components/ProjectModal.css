@@ -3,17 +3,17 @@
     width: 100vw;
     height: 100dvh;
     max-width: none;
-    max-height: none;   
+    max-height: none;
     padding: 0;
     border: 0;
     background-color: var(--bg);
     color: var(--text);
     overflow-y: auto;
-    overscroll-behavior: contain;     
+    overscroll-behavior: contain;
+    scrollbar-gutter: stable;
     opacity: 0;
-    transition:
-        opacity var(--dur-base) var(--ease-out);
-    }
+    transition: opacity var(--dur-base) var(--ease-out);
+}
 
 .project-modal[open] {
     opacity: 1;
@@ -28,99 +28,225 @@
         opacity: 0;
     }
 }
+
 .project-modal__inner {
     min-height: 100%;
-        padding-bottom: var(--space-section);
+    padding-bottom: var(--space-section);
 }
 
 .project-modal__bar {
     position: sticky;
     top: 0;
     z-index: 2;
-    height: 0; 
+    height: 0;
     display: flex;
     justify-content: flex-end;
     padding: 0 var(--page-pad);
 }
 
-.project-modal__close { 
+.project-modal__close {
     margin-top: var(--space-4);
     border-radius: 50rem;
-    backdrop-filter: blur(8px);
     cursor: pointer;
-    transition: background-color var(--dur-fast) var(--ease-out);
 }
 
-.project-modal__cover img {
+
+.project-modal__article {
+    width: min(100% - 2 * var(--page-pad), 46rem);
+    margin-inline: auto;
+    padding-top: clamp(4rem, 9vw, 7rem);
+    display: grid;
+    gap: var(--space-8);
+}
+
+.project-modal__header {
+    display: grid;
+    gap: var(--space-2);
+}
+
+.project-modal__eyebrow {
+    color: var(--text-muted);
+    font-size: var(--font-caption);
+}
+
+.project-modal__title {
+    font-size: clamp(2.25rem, 1.4rem + 2.8vw, 3.5rem);
+    font-weight: 400;
+    line-height: 1.05;
+    letter-spacing: -0.01em;
+    text-wrap: balance;
+}
+
+.project-modal__summary {
+    max-width: 48ch;
+    color: var(--text-muted);
+    font-size: 1.0625rem;
+    line-height: 1.5;
+    text-wrap: pretty;
+}
+
+.project-modal__cover {
+    margin: 0;
+    overflow: hidden;
+    border-radius: 1.25rem;
+    background: color-mix(in srgb, var(--dark) 4%, var(--bg));
+    aspect-ratio: 16 / 9;
+}
+
+.project-modal__media {
     width: 100%;
     height: 100%;
     object-fit: cover;
 }
 
-.project-modal__content {
-    width: min(100% - 2 * var(--page-pad), 44rem);
-    margin-inline: auto;
-    margin-top: var(--space-12);
+.project-modal__prose {
+    max-width: 62ch;
+    font-size: 1.0625rem;
+    line-height: 1.65;
+    text-wrap: pretty;
+}
+
+.project-modal__prose p + p {
+    margin-top: var(--space-4);
+}
+
+.project-modal__prose h3 {
+    margin-top: var(--space-8);
+    margin-bottom: var(--space-2);
+    font-size: 1.25rem;
+    font-weight: 600;
+    line-height: 1.2;
+}
+
+
+.project-modal__facts {
     display: grid;
     gap: var(--space-8);
+    padding-top: var(--space-8);
+    border-top: 1px solid color-mix(in srgb, var(--dark) 12%, transparent);
 }
 
-.project-modal__header { display: grid; gap: var(--space-1); }
-
-.project-modal__date { color: var(--text-muted); }
-
-.project-modal__title {
-    font-size: clamp(2rem, 1.2rem + 2.5vw, 3rem);
-    font-weight: 400;
-    line-height: 1.1;
+.project-modal__fact {
+    display: grid;
+    gap: var(--space-2);
 }
 
-.project-modal__content section { text-wrap: pretty;
- margin-top: var(--space-2);}
-
-.project-modal__label {
-    margin-bottom: var(--space-2);
-    font-size: var(--font-h2);
+.project-modal__fact h3 {
+    font-size: 1.5rem;
     font-weight: 600;
+    line-height: 1.2;
+    letter-spacing: -0.01em;
 }
 
-.project-modal__paragraph{
-    margin-bottom: var(--space-4);
-    font-weight: 400;
+.project-modal__muted {
+    color: var(--text-muted);
 }
 
-.project-modal__text{
-    display: grid;
-    gap: var(--space-4);
-}
-
-
-
-.project-modal__meta {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(10rem, 1fr));
-    gap: var(--space-4) var(--space-8);
-    padding-top: var(--space-6);
-    border-top: 1px solid color-mix(in srgb, var(--dark) 20%, transparent);
-}
-
-.project-modal__meta-col ul {
+.project-modal__inline-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-1) var(--space-2);
     padding: 0;
     list-style: none;
-    font-size: 0.9375rem;
-    line-height: 1.4;
+    color: var(--text-muted);
 }
 
-.project-modal__meta-col a { text-decoration: none; }
+.project-modal__inline-list li:not(:last-child)::after {
+    content: '·';
+    margin-left: var(--space-2);
+    color: color-mix(in srgb, var(--text-muted) 55%, transparent);
+}
+
+.project-modal__inline-list a {
+    color: inherit;
+    text-decoration: none;
+}
+
+.project-modal__inline-list a:hover {
+    color: var(--text);
+    text-decoration: underline;
+}
 
 
-.project-modal__cta   { 
+.toolkit {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-4) var(--space-2);
+    padding: 0;
+    list-style: none;
+}
+
+.toolkit__item {
+    display: grid;
+    justify-items: center;
+    gap: var(--space-2);
+    width: 4.5rem;
+}
+
+.toolkit__icon {
+    display: grid;
+    place-items: center;
+    width: 3.5rem;
+    height: 3.5rem;
+    overflow: hidden;
+    border: 1px solid color-mix(in srgb, var(--dark) 8%, transparent);
+    border-radius: 0.9rem;
+    background: var(--light);
+    box-shadow:
+        0 1px 2px color-mix(in srgb, var(--dark) 8%, transparent),
+        0 10px 22px -16px color-mix(in srgb, var(--dark) 55%, transparent);
+}
+
+.toolkit__icon img {
+    width: 1.75rem;
+    height: 1.75rem;
+    object-fit: contain;
+}
+
+.toolkit__monogram {
+    font-size: 1.125rem;
+    font-weight: 600;
+    color: var(--text-muted);
+}
+
+.toolkit__name {
+    color: var(--text-muted);
+    font-size: 0.75rem;
+    line-height: 1.2;
+    text-align: center;
+    text-wrap: balance;
+}
+
+.project-modal__cta {
     justify-self: start;
 }
 
 @media (max-width: 40em) {
+    .project-modal__article {
+        padding-top: 4.5rem;
+        gap: var(--space-6);
+    }
+
     .project-modal__cover {
-        height: auto;
-        aspect-ratio: 2778 / 1284;
+        border-radius: 1rem;
+    }
+
+    .project-modal__facts {
+        gap: var(--space-6);
+        padding-top: var(--space-6);
+    }
+
+    .toolkit {
+        gap: var(--space-4);
+    }
+
+    .toolkit__item {
+        width: 4rem;
+    }
+
+    .toolkit__icon {
+        width: 3.25rem;
+        height: 3.25rem;
+        border-radius: 0.8rem;
     }
 }

@@ -21,6 +21,7 @@
 .highlight__education{
     background-color: var(--highlight);
     padding: var(--space-1) var(--space-2);
+    border-radius: var(--full-round) ;
     box-decoration-break: clone;
     -webkit-box-decoration-break: clone;
 }
@@ -50,7 +51,20 @@
     text-wrap: pretty;
 }
 
+.head__about a{
+    text-decoration: none;
+    color: inherit;
+    transition: color 100ms linear;
+}
 
+.head__about a:hover{
+    color: var(--text);
+
+}
+
+.head__tagline, .head__about{
+    color: var(--half-muted);
+}
 
 @media (max-width: 40em) {
     .head__role, .head__tagline { font-size: var(--font-h2-mobile);}

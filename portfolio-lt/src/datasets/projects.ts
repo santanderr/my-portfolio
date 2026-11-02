@@ -1,6 +1,9 @@
-import activityTrackerImg from '../assets/images/ActivityTracker.png'
-import aircraftViewerImg from '../assets/images/AircraftViewer.png'
-import ventoryGoImg from '../assets/images/VentoryGoEditor.png'
+import activityTrackerCardImg from '../assets/images/activity_tracker_mockup.png'
+import activityTrackerDetailImg from '../assets/images/ActivityTracker.png'
+import aircraftViewerCardImg from '../assets/images/Aircraft_Viewer.png'
+import aircraftViewerDetailImg from '../assets/images/AircraftViewer.png'
+import ventoryGoCardImg from '../assets/images/VentoryGo_Mockup.png'
+import ventoryGoDetailImg from '../assets/images/VentoryGoEditor.png'
 
 export interface Project {
     problem: string    // what gap or need the project addresses
@@ -17,8 +20,8 @@ export interface Project {
     teams: { label: string; url?: string }[]
     start: string              // 'YYYY-MM'
     end?: string               // 'YYYY-MM'; omitted = still ongoing ("today")
-    tools: string[]            // hide the column in the popup when empty
-    stack: string[]
+    tools: string[]            // shown in the popup's toolkit row
+    stack: string[]            // merged into the same toolkit row
     link?: { label: string; url: string }   
 }
 
@@ -28,8 +31,9 @@ export const projects: Project[] = [
         title: 'VentoryGo',
         summary: 'Self-hosted invoicing tool with a live-preview editor.',
         type: 'Web Application',
-        image: ventoryGoImg,
+        image: ventoryGoCardImg,
         imageAlt: 'VentoryGo invoice editor with a live preview of the invoice',
+        detailImage: ventoryGoDetailImg,
         problem:
             'Freelancers and small companies need simple invoicing without handing their data to a hosted service.',
         approach:
@@ -46,10 +50,11 @@ export const projects: Project[] = [
     {
         id: 'activity-tracker',
         title: 'ActivityTracker',
-        summary: 'An Android app for tracking daily activities, with streaks and reminders.',
+        summary: 'An Android app for tracking daily activities with streaks and reminders.',
         type: 'Android Application',
-        image: activityTrackerImg,
+        image: activityTrackerCardImg,
         imageAlt: 'ActivityTracker progress screen with a streak and activity charts',
+        detailImage: activityTrackerDetailImg,
         problem:
             'Healthy habits are easy to drop when nothing shows your progress.',
         approach:
@@ -75,8 +80,9 @@ export const projects: Project[] = [
         title: 'AircraftViewer',
         summary: 'Desktop app that plots aircraft positions on a map.',
         type: 'Desktop Application',
-        image: aircraftViewerImg,
+        image: aircraftViewerCardImg,
         imageAlt: 'AircraftViewer map with aircraft positions and a table of flights',
+        detailImage: aircraftViewerDetailImg,
         problem:
             'Aircraft position data is hard to read as raw numbers.',
         approach:

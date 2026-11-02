@@ -39,7 +39,7 @@ function Head() {
             <div className="head__about">
                 <p>
                   I design the frontend and build in TypeScript, with Java, Kotlin and Spring on the backend.
-                  Studying at <span className="highlight__education">Esslingen University of Applied Sciences</span>,
+                  Studying at <a href="https://www.hs-esslingen.de/" target="_blank"><span className="highlight__education">Esslingen University of Applied Sciences</span></a>,
                   graduating February 2028.
                 </p>
           <br />

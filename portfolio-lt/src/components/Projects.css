@@ -1,94 +1,100 @@
-.bento {
-    width: min(100% - 2 * var(--page-pad), 64rem);
-    height: 70dvh;
-    min-height: 40rem;
-    margin-inline: auto;
-    margin-top: var(--space-12);
-    padding: 0;
+.projects {
+    margin-top: 10dvh;
+    /* Align the first card with the site container, but let the rail run to the
+       viewport's right edge. The -8px offsets the list's 8px focus padding. */
+    padding-left: calc(max(var(--page-pad), (100% - 64rem) / 2) - 8px);
+}
+
+.projects__list {
+    display: flex;
+    align-items: start;
+    gap: var(--space-6);
+    margin: 0;
+    padding: var(--space-2) var(--page-pad) var(--space-4) 8px;
     list-style: none;
-    display: grid;
-    gap: var(--space-8) var(--space-4);
+    overflow-x: auto;
+    overscroll-behavior-x: contain;
+    scroll-snap-type: x proximity;
+    scroll-padding-inline: 8px var(--page-pad);
+    scrollbar-width: thin;
+    scrollbar-color: color-mix(in srgb, var(--dark) 22%, transparent) transparent;
+    -webkit-overflow-scrolling: touch;
 }
 
-@media (min-width: 56em) {
-    .bento {
-        grid-template-columns: minmax(0, 2fr) minmax(0, 3fr);
-        grid-template-rows: repeat(2, minmax(0, 1fr));
-        grid-template-areas:
-            'activity-tracker ventory-go'
-            'activity-tracker aircraft-viewer';
-    }
-
-    .bento__item[data-project='activity-tracker'] { grid-area: activity-tracker; }
-    .bento__item[data-project='ventory-go']       { grid-area: ventory-go; }
-    .bento__item[data-project='aircraft-viewer']  { grid-area: aircraft-viewer; }
+.projects__list::-webkit-scrollbar {
+    height: 6px;
 }
-.bento__item { min-height: 0; }
 
-.bento__tile {
-    display: grid;
-    grid-template-rows: minmax(0, 1fr) auto;
+.projects__list::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.projects__list::-webkit-scrollbar-thumb {
+    background: color-mix(in srgb, var(--dark) 22%, transparent);
+    border-radius: var(--full-round);
+}
+
+.project-card {
+    flex: 0 0 min(78vw, 24rem);
+    min-width: 0;
+    scroll-snap-align: start;
+}
+
+.project-card__tile {
+    display: block;
     width: 100%;
-    height: 100%;
     padding: 0;
     border: 0;
     background: none;
     color: inherit;
     font: inherit;
     text-align: left;
-    cursor: pointer; 
-    border-radius: var(--tiles);
-    overflow: hidden;
-    isolation: isolate;
-   
+    cursor: pointer;
 }
 
-.bento__tile:focus-visible {    
+.project-card__tile:focus-visible {
     outline: 2px solid var(--accent-3);
     outline-offset: 4px;
 }
 
-.bento__media {
-    display: block;
-    min-height: 0;
+.project-card__media {
+    display: grid;
+    place-items: center;
+    aspect-ratio: 1;
+    padding: clamp(1.5rem, 7%, 3rem);
     overflow: hidden;
+    border-radius: var(--tiles);
+    background: color-mix(in srgb, var(--dark) 5%, var(--bg));
+    isolation: isolate;
 }
 
-.bento__image {
+.project-card__image {
     width: 100%;
     height: 100%;
-    object-fit: cover;
+    object-fit: contain;
+    filter: drop-shadow(0 14px 28px rgb(24 28 20 / 0.16));
 }
 
-.bento__caption {
+.project-card__caption {
     display: grid;
     gap: var(--space-1);
-    background-color: var(--light);
-    padding: var(--space-4) var(--space-4);
+    padding: var(--space-4) 0;
 }
 
-.bento__title {
-    font-size: var(--font-h2);
+.project-card__title {
+    font-size: var(--font-text);
     font-weight: 400;
     line-height: 1.2;
 }
 
-.bento__summary {
+.project-card__summary {
     color: var(--text-muted);
+    font-size: var(--font-caption);
     max-width: 40ch;
 }
 
 @media (max-width: 56em) {
-    .bento {
-        height: auto;
-        min-height: 0;
+    .projects__list {
+        gap: var(--space-4);
     }
-
-    .bento__tile { height: auto; }
-    .bento__media { aspect-ratio: auto; }
-    .bento__image { height: auto; }
-}
-
-@media (prefers-reduced-motion: reduce) {
-    .bento__tile:hover .bento__image { transform: none; }
 }
