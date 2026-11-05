@@ -93,7 +93,7 @@ export const projects: Project[] = [
         teams: [{ label: 'Solo project' }],
         start: '2026-02',
         tools: [],
-        stack: ['C#', '.NET'],
+        stack: ['C#'],
         link: { label: 'View on GitHub', url: 'https://github.com/shandao256/AircraftViewer' },
     },
 ]
